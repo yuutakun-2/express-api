@@ -4,6 +4,8 @@ require("express-ws")(app);
 const { wsRouter } = require("./routers/ws");
 app.use(wsRouter);
 
+const { createServer } = require("@vercel/node");
+
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
@@ -31,11 +33,8 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-const PORT = process.env.PORT || 3000;
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`Express API started at port ${PORT}...`);
-  });
-}
+app.get("/", (req, res) => {
+  res.json({ message: "Hello, Vercel!" });
+});
 
-module.exports = app;
+module.exports = createServer(app);
