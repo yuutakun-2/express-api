@@ -8,7 +8,12 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://yuuta-react-app.vercel.app"],
+    credentials: true,
+  })
+);
 
 const { usersRouter } = require("./routers/users");
 const { postsRouter } = require("./routers/posts");
@@ -21,6 +26,16 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.listen(8080, () => {
-  console.log("Express API started at port 8080...");
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
 });
+
+const PORT = process.env.PORT || 3000;
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Express API started at port ${PORT}...`);
+  });
+}
+
+module.exports = app;
