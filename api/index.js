@@ -34,7 +34,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hello, Vercel!" });
+  res.send("Express on Vercel");
 });
 
 app.listen(8080, () => {
