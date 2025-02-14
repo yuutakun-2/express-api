@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-require("express-ws")(app);
-const { wsRouter } = require("./routers/ws");
-app.use(wsRouter);
+// require("express-ws")(app);
+// const { wsRouter } = require("./routers/ws");
+// app.use(wsRouter);
 
 const { createServer } = require("@vercel/node");
 

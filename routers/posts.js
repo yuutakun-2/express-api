@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
-const { clients } = require("./ws");
+// const { clients } = require("./ws");
 
 // const { addNoti } = require("./noti");
 
@@ -115,13 +115,13 @@ router.post("/posts/:id/like", auth, async (req, res) => {
       },
     });
 
-    clients.map((client) => {
-      if (client.userId == post.user.id) {
-        // Be careful here: could also be post.userId
-        client.ws.send(JSON.stringify({ event: "notis" }));
-        console.log(`WS: event sent to ${client.userId}: notis`);
-      }
-    });
+    // clients.map((client) => {
+    //   if (client.userId == post.user.id) {
+    //     // Be careful here: could also be post.userId
+    //     client.ws.send(JSON.stringify({ event: "notis" }));
+    //     console.log(`WS: event sent to ${client.userId}: notis`);
+    //   }
+    // });
 
     if (post.user.id !== user.id) {
       await prisma.notification.create({
