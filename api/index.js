@@ -17,9 +17,9 @@ app.use(
   })
 );
 
-const { usersRouter } = require("./routers/users");
-const { postsRouter } = require("./routers/posts");
-const { commentsRouter } = require("./routers/comments");
+const { usersRouter } = require("../routers/users");
+const { postsRouter } = require("../routers/posts");
+const { commentsRouter } = require("../routers/comments");
 app.use(postsRouter);
 app.use(usersRouter);
 app.use(commentsRouter);
