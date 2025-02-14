@@ -4,7 +4,7 @@ const app = express();
 // const { wsRouter } = require("./routers/ws");
 // app.use(wsRouter);
 
-const { createServer } = require("@vercel/node");
+// const { createServer } = require("@vercel/node");
 
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
@@ -37,4 +37,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello, Vercel!" });
 });
 
-module.exports = createServer(app);
+app.listen(8080, () => {
+  console.log("Express API running at 8080");
+});
+
+module.exports = app;
