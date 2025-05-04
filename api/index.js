@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["https://react-app-iota-rose.vercel.app"],
+    origin: ["https://react-app-iota-rose.vercel.app", process.env.BACKEND_URL],
     credentials: true,
   })
 );
